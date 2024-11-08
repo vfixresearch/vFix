@@ -1,0 +1,391 @@
+[31mViolation[0m for LockedEther in contract 'AirdropToken':
+    |}
+    |
+  > |contract AirdropToken is BaseToken {
+    |    uint256 public airAmount;
+    |    uint256 public airBegintime;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(67)
+--
+[31mViolation[0m for MissingInputValidation in contract 'AirdropToken':
+    |    uint256 public totalSupply;
+    |
+  > |    mapping (address => uint256) public balanceOf;
+    |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(9)
+--
+[31mViolation[0m for MissingInputValidation in contract 'AirdropToken':
+    |
+    |    mapping (address => uint256) public balanceOf;
+  > |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+    |    event Transfer(address indexed from, address indexed to, uint256 value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(10)
+--
+[31mViolation[0m for MissingInputValidation in contract 'AirdropToken':
+    |    }
+    |
+  > |    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+    |        require(_value <= allowance[_from][msg.sender]);
+    |        allowance[_from][msg.sender] -= _value;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(31)
+--
+[31mViolation[0m for MissingInputValidation in contract 'AirdropToken':
+    |    }
+    |
+  > |    function approve(address _spender, uint256 _value) public returns (bool success) {
+    |        allowance[msg.sender][_spender] = _value;
+    |        Approval(msg.sender, _spender, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(38)
+--
+[31mViolation[0m for MissingInputValidation in contract 'AirdropToken':
+    |    uint32 public airLimitCount;
+    |
+  > |    mapping (address => uint32) public airCountOf;
+    |
+    |    event Airdrop(address indexed from, uint32 indexed count, uint256 tokenValue);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(74)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'AirdropToken':
+    |        require(balanceOf[_to] + _value > balanceOf[_to]);
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+  > |        balanceOf[_from] -= _value;
+    |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(20)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'AirdropToken':
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+    |        balanceOf[_from] -= _value;
+  > |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    |        Transfer(_from, _to, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(21)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'AirdropToken':
+    |        }
+    |        _transfer(airSender, msg.sender, airAmount);
+  > |        airCountOf[msg.sender] += 1;
+    |        Airdrop(msg.sender, airCountOf[msg.sender], airAmount);
+    |    }
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(85)
+--
+[31mViolation[0m for LockedEther in contract 'BaseToken':
+    |pragma solidity ^0.4.19;
+    |
+  > |contract BaseToken {
+    |    string public name;
+    |    string public symbol;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(3)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BaseToken':
+    |    uint256 public totalSupply;
+    |
+  > |    mapping (address => uint256) public balanceOf;
+    |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(9)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BaseToken':
+    |
+    |    mapping (address => uint256) public balanceOf;
+  > |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+    |    event Transfer(address indexed from, address indexed to, uint256 value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(10)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BaseToken':
+    |    }
+    |
+  > |    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+    |        require(_value <= allowance[_from][msg.sender]);
+    |        allowance[_from][msg.sender] -= _value;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(31)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BaseToken':
+    |    }
+    |
+  > |    function approve(address _spender, uint256 _value) public returns (bool success) {
+    |        allowance[msg.sender][_spender] = _value;
+    |        Approval(msg.sender, _spender, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(38)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'BaseToken':
+    |        require(balanceOf[_to] + _value > balanceOf[_to]);
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+  > |        balanceOf[_from] -= _value;
+    |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(20)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'BaseToken':
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+    |        balanceOf[_from] -= _value;
+  > |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    |        Transfer(_from, _to, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(21)
+--
+[31mViolation[0m for LockedEther in contract 'BurnToken':
+    |}
+    |
+  > |contract BurnToken is BaseToken {
+    |    event Burn(address indexed from, uint256 value);
+    |
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(45)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BurnToken':
+    |    uint256 public totalSupply;
+    |
+  > |    mapping (address => uint256) public balanceOf;
+    |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(9)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BurnToken':
+    |
+    |    mapping (address => uint256) public balanceOf;
+  > |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+    |    event Transfer(address indexed from, address indexed to, uint256 value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(10)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BurnToken':
+    |    }
+    |
+  > |    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+    |        require(_value <= allowance[_from][msg.sender]);
+    |        allowance[_from][msg.sender] -= _value;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(31)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BurnToken':
+    |    }
+    |
+  > |    function approve(address _spender, uint256 _value) public returns (bool success) {
+    |        allowance[msg.sender][_spender] = _value;
+    |        Approval(msg.sender, _spender, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(38)
+--
+[31mViolation[0m for MissingInputValidation in contract 'BurnToken':
+    |    }
+    |
+  > |    function burnFrom(address _from, uint256 _value) public returns (bool success) {
+    |        require(balanceOf[_from] >= _value);
+    |        require(_value <= allowance[_from][msg.sender]);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(56)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'BurnToken':
+    |        require(balanceOf[_to] + _value > balanceOf[_to]);
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+  > |        balanceOf[_from] -= _value;
+    |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(20)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'BurnToken':
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+    |        balanceOf[_from] -= _value;
+  > |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    |        Transfer(_from, _to, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(21)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'BurnToken':
+    |        require(balanceOf[msg.sender] >= _value);
+    |        balanceOf[msg.sender] -= _value;
+  > |        totalSupply -= _value;
+    |        Burn(msg.sender, _value);
+    |        return true;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(51)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'BurnToken':
+    |        require(balanceOf[_from] >= _value);
+    |        require(_value <= allowance[_from][msg.sender]);
+  > |        balanceOf[_from] -= _value;
+    |        allowance[_from][msg.sender] -= _value;
+    |        totalSupply -= _value;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(59)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'BurnToken':
+    |        balanceOf[_from] -= _value;
+    |        allowance[_from][msg.sender] -= _value;
+  > |        totalSupply -= _value;
+    |        Burn(_from, _value);
+    |        return true;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(61)
+--
+[31mViolation[0m for LockedEther in contract 'CustomToken':
+    |}
+    |
+  > |contract CustomToken is BaseToken, BurnToken, AirdropToken, LockToken {
+    |    function CustomToken() public {
+    |        totalSupply = 100000000000000000;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(106)
+--
+[31mViolation[0m for MissingInputValidation in contract 'CustomToken':
+    |    uint256 public totalSupply;
+    |
+  > |    mapping (address => uint256) public balanceOf;
+    |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(9)
+--
+[31mViolation[0m for MissingInputValidation in contract 'CustomToken':
+    |
+    |    mapping (address => uint256) public balanceOf;
+  > |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+    |    event Transfer(address indexed from, address indexed to, uint256 value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(10)
+--
+[31mViolation[0m for MissingInputValidation in contract 'CustomToken':
+    |    }
+    |
+  > |    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+    |        require(_value <= allowance[_from][msg.sender]);
+    |        allowance[_from][msg.sender] -= _value;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(31)
+--
+[31mViolation[0m for MissingInputValidation in contract 'CustomToken':
+    |    }
+    |
+  > |    function approve(address _spender, uint256 _value) public returns (bool success) {
+    |        allowance[msg.sender][_spender] = _value;
+    |        Approval(msg.sender, _spender, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(38)
+--
+[31mViolation[0m for MissingInputValidation in contract 'CustomToken':
+    |    }
+    |
+  > |    function burnFrom(address _from, uint256 _value) public returns (bool success) {
+    |        require(balanceOf[_from] >= _value);
+    |        require(_value <= allowance[_from][msg.sender]);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(56)
+--
+[31mViolation[0m for MissingInputValidation in contract 'CustomToken':
+    |    uint32 public airLimitCount;
+    |
+  > |    mapping (address => uint32) public airCountOf;
+    |
+    |    event Airdrop(address indexed from, uint32 indexed count, uint256 tokenValue);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(74)
+--
+[31mViolation[0m for MissingInputValidation in contract 'CustomToken':
+    |    }
+    |    
+  > |    mapping (address => LockMeta) public lockedAddresses;
+    |
+    |    function _transfer(address _from, address _to, uint _value) internal {
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(96)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'CustomToken':
+    |        require(balanceOf[_to] + _value > balanceOf[_to]);
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+  > |        balanceOf[_from] -= _value;
+    |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(20)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'CustomToken':
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+    |        balanceOf[_from] -= _value;
+  > |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    |        Transfer(_from, _to, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(21)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'CustomToken':
+    |        require(balanceOf[msg.sender] >= _value);
+    |        balanceOf[msg.sender] -= _value;
+  > |        totalSupply -= _value;
+    |        Burn(msg.sender, _value);
+    |        return true;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(51)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'CustomToken':
+    |        require(balanceOf[_from] >= _value);
+    |        require(_value <= allowance[_from][msg.sender]);
+  > |        balanceOf[_from] -= _value;
+    |        allowance[_from][msg.sender] -= _value;
+    |        totalSupply -= _value;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(59)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'CustomToken':
+    |        balanceOf[_from] -= _value;
+    |        allowance[_from][msg.sender] -= _value;
+  > |        totalSupply -= _value;
+    |        Burn(_from, _value);
+    |        return true;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(61)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'CustomToken':
+    |        }
+    |        _transfer(airSender, msg.sender, airAmount);
+  > |        airCountOf[msg.sender] += 1;
+    |        Airdrop(msg.sender, airCountOf[msg.sender], airAmount);
+    |    }
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(85)
+--
+[31mViolation[0m for LockedEther in contract 'LockToken':
+    |}
+    |
+  > |contract LockToken is BaseToken {
+    |    struct LockMeta {
+    |        uint256 amount;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(90)
+--
+[31mViolation[0m for MissingInputValidation in contract 'LockToken':
+    |    uint256 public totalSupply;
+    |
+  > |    mapping (address => uint256) public balanceOf;
+    |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(9)
+--
+[31mViolation[0m for MissingInputValidation in contract 'LockToken':
+    |
+    |    mapping (address => uint256) public balanceOf;
+  > |    mapping (address => mapping (address => uint256)) public allowance;
+    |
+    |    event Transfer(address indexed from, address indexed to, uint256 value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(10)
+--
+[31mViolation[0m for MissingInputValidation in contract 'LockToken':
+    |    }
+    |
+  > |    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+    |        require(_value <= allowance[_from][msg.sender]);
+    |        allowance[_from][msg.sender] -= _value;
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(31)
+--
+[31mViolation[0m for MissingInputValidation in contract 'LockToken':
+    |    }
+    |
+  > |    function approve(address _spender, uint256 _value) public returns (bool success) {
+    |        allowance[msg.sender][_spender] = _value;
+    |        Approval(msg.sender, _spender, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(38)
+--
+[31mViolation[0m for MissingInputValidation in contract 'LockToken':
+    |    }
+    |    
+  > |    mapping (address => LockMeta) public lockedAddresses;
+    |
+    |    function _transfer(address _from, address _to, uint _value) internal {
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(96)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'LockToken':
+    |        require(balanceOf[_to] + _value > balanceOf[_to]);
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+  > |        balanceOf[_from] -= _value;
+    |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(20)
+--
+[31mViolation[0m for UnrestrictedWrite in contract 'LockToken':
+    |        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+    |        balanceOf[_from] -= _value;
+  > |        balanceOf[_to] += _value;
+    |        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+    |        Transfer(_from, _to, _value);
+  at /home/pxf109/smartfix_data/sol_most_popular/0x00c8decc1ca373a99f1c2a341be50f03d35e03e7.sol(21)
