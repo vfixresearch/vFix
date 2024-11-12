@@ -57,8 +57,8 @@ Below is an example of using VFIX to automatically fix vulnerabilities:
 from Generator import Generator
 
 # Specify the paths to the vulnerable contract and static analysis report
-contract_path = 'data/vulnerable_contract.sol'
-report_path = 'static_reports/data_report.json'
+contract_path = 'data/mixed/'
+report_path = 'static_reports/..'
 
 # Initialize the generator and apply fixes
 generator = Generator(contract_path, report_path)
