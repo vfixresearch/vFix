@@ -137,7 +137,5 @@ function createUnicornForCandy() whenNotPaused public payable returns(uint256) {
 Explanation: Similar to acceptHybridization, this function includes a lock_for_reentrancy check. By setting lock_for_reentrancy = true; at the start of execution, it prevents reentrant attacks, ensuring the function's secure operation.
 
 
-The generated `.sol` file contains the patched contract code. For example, for a reentrancy vulnerability, the patched code will update state variables before external calls to prevent reentrancy attacks.
-
 ## Examples and Results
 The `examples` folder contains sample contracts with vulnerabilities that can be used as input for VFIX, and the `res` folder includes the corresponding patched contracts, demonstrating the tool’s effectiveness across various vulnerability types.
